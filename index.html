@@ -24,7 +24,6 @@
                 return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
             }
             function TitleChange(red,green,blue){
-                //alert((parseInt(red)+parseInt(green)+parseInt(blue))/2 )
                 if((parseInt(red)+parseInt(green)+parseInt(blue)) > 382.5)
                     document.getElementById("title").style.color = '#000000' //검은색
                 else
@@ -48,11 +47,16 @@
                 var green = document.getElementById("green").value
                 var blue = document.getElementById("blue").value
 
-                colorhex = "#" + ColorToHex(parseInt(red)) + ColorToHex(parseInt(green)) + ColorToHex(parseInt(blue))
+                if(red === "" || green === "" || blue === "")
+                    alert("모든색상을 쓰시오")
+                else{
+                    colorhex = "#" + ColorToHex(parseInt(red)) + ColorToHex(parseInt(green)) + ColorToHex(parseInt(blue))
 
-                TitleChange(red,green,blue)
-                document.body.style.backgroundColor = colorhex
-                document.getElementById("rgb").value = colorhex
+                    TitleChange(red,green,blue)
+                    document.body.style.backgroundColor = colorhex
+                    document.getElementById("rgb").value = colorhex
+                }
+
 
             }
         </script>
