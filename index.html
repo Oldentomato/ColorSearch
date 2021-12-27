@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <h2 class="title" id="title">COLOR SEARCH</h2>
+        <link rel="stylesheet" href="./index.css">
+    </head>
+
+    <body>
+        <div class="form">
+            <input type="text" id="red" placeholder="Red">
+            <input type="text" id="green" placeholder="Green">
+            <input type="text" id="blue" placeholder="Blue">
+            <br/>
+            <button type="button" onclick="ColorRgbChange()">Submit</button>
+            <br/>
+            <input type="text" id="rgb" placeholder="RGB Hexadecimal">
+            <br/>
+            <button type="button" onclick="ColorHexChange()">Submit</button>
+        </div>
+        <script>
+            function ColorToHex(color) {
+                var hexadecimal = color.toString(16);
+                return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+            }
+            function TitleChange(red,green,blue){
+                //alert((parseInt(red)+parseInt(green)+parseInt(blue))/2 )
+                if((parseInt(red)+parseInt(green)+parseInt(blue)) > 382.5)
+                    document.getElementById("title").style.color = '#000000' //검은색
+                else
+                    document.getElementById("title").style.color = '#ffffff' //흰색
+            }
+            function ColorHexChange(){
+                var hex = document.getElementById("rgb").value
+                var red = parseInt(hex[1]+hex[2],16);
+                var green = parseInt(hex[3]+hex[4],16);
+                var blue = parseInt(hex[5]+hex[6],16);
+
+                document.getElementById("red").value = red
+                document.getElementById("green").value = green
+                document.getElementById("blue").value = blue
+
+                TitleChange(red,green,blue)
+                document.body.style.backgroundColor = document.getElementById("rgb").value
+            }
+            function ColorRgbChange(){
+                var red = document.getElementById("red").value
+                var green = document.getElementById("green").value
+                var blue = document.getElementById("blue").value
+
+                colorhex = "#" + ColorToHex(parseInt(red)) + ColorToHex(parseInt(green)) + ColorToHex(parseInt(blue))
+
+                TitleChange(red,green,blue)
+                document.body.style.backgroundColor = colorhex
+                document.getElementById("rgb").value = colorhex
+
+            }
+        </script>
+
+    </body>
+</html>
